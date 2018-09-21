@@ -65,6 +65,39 @@ namespace Microsoft.Azure.Management.Sql
             }
 
             /// <summary>
+            /// Gets managed database restore operation status.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='locationName'>
+            /// </param>
+            /// <param name='operationId'>
+            /// </param>
+            public static void GetOperationStatus(this IManagedDatabasesOperations operations, string locationName, System.Guid operationId)
+            {
+                operations.GetOperationStatusAsync(locationName, operationId).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Gets managed database restore operation status.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='locationName'>
+            /// </param>
+            /// <param name='operationId'>
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task GetOperationStatusAsync(this IManagedDatabasesOperations operations, string locationName, System.Guid operationId, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                (await operations.GetOperationStatusWithHttpMessagesAsync(locationName, operationId, null, cancellationToken).ConfigureAwait(false)).Dispose();
+            }
+
+            /// <summary>
             /// Gets a list of managed databases.
             /// </summary>
             /// <param name='operations'>
